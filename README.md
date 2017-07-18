@@ -31,6 +31,7 @@ pip install -e .
 1. cd your_slides_dir
 2. create a file named whatever.md (with .md extension)
 3. follow the instruction in the following sections and write the slides content inside the whatever.md 
+4. run the command, see the following "usage" section
 
 ### slides configuration
 
@@ -144,8 +145,19 @@ line 3
 Same as the output of the nbconvert, the output of the pyreveal will also try to read a custom.css at the same directory of the output html file. 
 So, it is possible and easy to change something for the slides, e.g. change the fonts. 
 
+### usage
 
-### Next plan
+run this and done.
+
+```sh
+
+python -m pyreveal -i whatever.md
+
+```
+
+
+
+## Next plan
 
 Next thing to do should be try to read the jupyter notebook file, and convert the slides content from notebook to the reveal.js html. 
 Because I still hope that the <cell> tags should be remove, and the speaker notes should be fixed.  
