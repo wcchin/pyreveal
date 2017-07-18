@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>a testing</title>
+
+		<link rel="stylesheet" href="reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="reveal.js/css/theme/sky.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+                <section data-background="#dddddd" data-transition="slide"  data-background-transition="zoom">
+<h1>testing 1</h1>
+<p>this is a testing 1</p>
+</section>
+ <section>
+<section>
+<h1>this should be a second slide</h1>
+<ul>
+<li>check1 </li>
+<li>check2</li>
+<li>check3</li>
+</ul><aside class="notes">
+<p>this is the speaker notes  </p>
+<p>hope this is here</p>
+<p></p>
+</aside>
+
+</section>
+<section>
+<h1>this should be a subslide of second slide</h1>
+<p><p class="fragment">
+- name: chin<br />
+</p>
+<p class="fragment grow">
+- titile: for fun</p>
+</p>
+</section>
+</section>
+ <section>
+<p>haha - no slide title</p>
+</section>
+
+			</div>
+		</div>
+
+		<script src="reveal.js/lib/js/head.min.js"></script>
+		<script src="reveal.js/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+                transition: Reveal.getQueryHash().transition || 'page', // default/cube/page/concave/zoom/linear/none
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'reveal.js/plugin/markdown/marked.js' },
+					{ src: 'reveal.js/plugin/markdown/markdown.js' },
+					{ src: 'reveal.js/plugin/notes/notes.js', async: true },
+					{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'reveal.js/plugin/title-footer/title-footer.js',async: true,callback: function() {title_footer.initialize(title='Benny',background='rgba(205,205,205,0.0)');}}, 
+                    { src: 'reveal.js/plugin/math-katex/math-katex.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
+ 

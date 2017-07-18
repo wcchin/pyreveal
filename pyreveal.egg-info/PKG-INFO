@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: pyreveal
+Version: 0.0.1
+Summary: a python package that convert markdown to reveal.js slides.
+Home-page: https://github.com/wcchin/pyreveal
+Author: Benny Chin
+Author-email: wcchin.88@gmail.com
+License: LICENSE
+Description: temp
+        
+Keywords: reveal.js,markdown,slides,presentation
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Education
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7

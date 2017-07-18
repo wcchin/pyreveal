@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>{{ title }}</title>
+
+		<link rel="stylesheet" href="{{ reveal_path }}/css/reveal.css">
+		<link rel="stylesheet" href="{{ reveal_path }}/css/theme/{{ theme }}.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="{{ reveal_path }}/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '{{ reveal_path }}/css/print/pdf.css' : '{{ reveal_path }}/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+        <!-- Custom stylesheet, it must be in the same directory as the html file -->
+        <link rel="stylesheet" href="custom.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+                {{ slides_contents }}
+			</div>
+		</div>
+
+		<script src="{{ reveal_path }}/lib/js/head.min.js"></script>
+		<script src="{{ reveal_path }}/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+                transition: Reveal.getQueryHash().transition || '{{ transition }}', // default/cube/page/concave/zoom/linear/none
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '{{ reveal_path }}/plugin/markdown/marked.js' },
+					{ src: '{{ reveal_path }}/plugin/markdown/markdown.js' },
+					{ src: '{{ reveal_path }}/plugin/notes/notes.js', async: true },
+					{ src: '{{ reveal_path }}/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },{% if not(cr_word is none) %}
+                    { src: '{{ reveal_path }}/plugin/title-footer/title-footer.js',async: true,callback: function() {title_footer.initialize(title='{{ cr_word }}',background='{{ cr_color }}');}}, {% endif %}{% if toc %}
+                    { src: '{{ reveal_path }}/plugin/toc-progress/toc-progress.js', async: true, callback: function() { toc_progress.initialize(); toc_progress.create(); } }, {% endif %}
+                    { src: '{{ reveal_path }}/plugin/math-katex/math-katex.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
+ 
