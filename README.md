@@ -2,7 +2,7 @@
 a python package for converting markdown to reveal.js slides.
 
 ## Why another converter?
-Previously, I was(am) using jupyter to create a notebook with slides, and convert it using jupyter+nbconvert, and even wrote some codes to customize the output html file, and convert to pdf using phantom.js+decktape  automatically. So, the nbconvert can do the conversion from notebook to reveal.js. 
+Previously, I was(am) using jupyter to create a notebook with slides, and convert it using jupyter+nbconvert, and even wrote some codes to customize the output html file, and convert to pdf using <a href="https://github.com/astefanutti/decktape" target="blank">phantomjs+decktape</a> automatically. So, the nbconvert can do the conversion from notebook to reveal.js. 
 
 But, I don't understand why they keep the cell tags, which make it a pain while customizing the themes, and the custom.css, that following the tutorials or answers from stackoverflow to customize the reveal.js (the js), the codes will not work for the nbconvert version of slides.html. 
 
@@ -57,7 +57,7 @@ configs:
 - cr_word: CopyRight word (optional), the words that appear at the footer
 - cr_color: color for the cr_word (optional), default to 'rgba(205,205,205,0.0)'
 - toc: use the table of content plugin (not tested yet)
-- to_pdf: default to false, if true, will create a pdf version of the slides, using phantom.js
+- to_pdf: default to false, if true, will create a pdf version of the slides, using phantomjs. to use the to_pdf function, please check and install phantomjs following the <a href="https://github.com/astefanutti/decktape">decktape instruction</a> and <a href="http://phantomjs.org/" target="blank">phantomjs instruction</a>.
 - reveal_path: optional, default to 'reveal.js'(the same directory as the output html)
 
 ### the special keyword for generating slides and some other functions
