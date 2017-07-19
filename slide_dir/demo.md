@@ -7,11 +7,12 @@ toc: False
 to_pdf: false
 reveal_path: https://wcc-slides.netlify.com/reveal.js
 
-# Reveal.js
+# pyreveal
+#### converting markdown and using python-jinja2 into 
 ### The HTML Presentation Framework
 
-Created by Hakim El Hattab/@hakimel  
-pyreveal created by Benny/@wcchin
+demo slides modified by Benny/@wcchin  
+check [github/pyreveal](https://github.com/wcchin/pyreveal)
 
 ---right
 
@@ -88,9 +89,9 @@ Presentations look great on touch devices, like mobile phones and tablets. Simpl
 ---right
 
 ## Fragments
-Hit the next arrow...
+Hit the next arrow...  
 ---fragment
-...to step through ...
+...to step through ...  
 ---fragment
 ... a
 ---fragment
@@ -116,7 +117,7 @@ fade-out
 fade-up (also down, left and right!)
 ---fragment_current-visible
 current-visible
----fragment
+---fragment_close
 Highlight
 ---fragment_highlight-red
 red

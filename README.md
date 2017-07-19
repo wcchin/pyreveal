@@ -8,6 +8,9 @@ But, I don't understand why they keep the cell tags, which make it a pain while 
 
 Plus, the speaker notes function is still not working for jupyter+nbconvert. 
 
+One more thing, if you change the contents in the notebook cell, you will need to run the nbconvert command again to generate the static html file. 
+What we need, is that the static html file can be generated automatically, and we can see the result as soon as we change the md file.
+
 Therefore, I decided to write a converter that take a simple md, and convert it to reveal.js slides using jinja2. 
 
 ## Demo
@@ -32,6 +35,8 @@ pip install -e .
 2. create a file named whatever.md (with .md extension)
 3. follow the instruction in the following sections and write the slides content inside the whatever.md 
 4. run the command, see the following "usage" section
+5. if the '-w' is used in the command, the slides will change according to the modification of the whatever.md file (and custom.css). 
+6. done
 
 ### slides configuration
 
@@ -140,20 +145,25 @@ line 3
 
 ```
 
-### custom.css
-
-Same as the output of the nbconvert, the output of the pyreveal will also try to read a custom.css at the same directory of the output html file. 
-So, it is possible and easy to change something for the slides, e.g. change the fonts. 
-
 ### usage
 
 run this and done.
 
 ```sh
 
-python -m pyreveal -i whatever.md
+python -m pyreveal -i whatever.md -w
 
 ```
+
+The two arguments:
+- -i: take a markdown file that contain the slides content (i.e. what you have prepared using the guidelines). 
+- -w: watch the change (optional), and rerun the function if any changes happened, this is very useful for making the slide. press ctrl+c to exit watch. 
+
+
+### custom.css
+
+Same as the output of the nbconvert, the output of the pyreveal will also try to read a custom.css at the same directory of the output html file. 
+So, it is possible and easy to change something for the slides, e.g. change the fonts. 
 
 
 

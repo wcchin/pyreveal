@@ -1,0 +1,21 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+@import url(http://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+@import url(http://fonts.googleapis.com/earlyaccess/cwtexhei.css);
+
+/*Some css fixes to use night theme with IPython slides*/
+body {
+font-family: 'cwTeXYen','Raleway', sans-serif;
+}
+
+.reveal p {
+font-family: 'cwTeXHei','Raleway', sans-serif;
+}
+
+.reveal H1, 
+.reveal H2, 
+.reveal H3, 
+.reveal H4, 
+.reveal H5, 
+.reveal H6 {
+font-family: 'cwTeXYen','Raleway', sans-serif;
+}

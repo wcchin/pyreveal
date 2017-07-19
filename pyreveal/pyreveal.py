@@ -8,7 +8,17 @@ import copy
 import markdown
 from docdata.mmddata import get_data
 import jinja2
+from watchdog.events import FileSystemEventHandler
+from watchdog.observers import Observer
+import time
 
+class MyHandler(FileSystemEventHandler):
+    def __init__(self, infile):
+        self.infile = infile
+
+    def dispatch(self, event):
+        slides(self.infile)
+        print "updated slides"
 
 def main():
     parser = OptionParser()
@@ -17,22 +27,39 @@ def main():
         help="markdown file holding your slides and configs",
         default='slides.md',
         metavar="SLIDES.md")
+    parser.add_option("-w", "--watch", action="store_true", dest="watch", default=False)
+
     (options, args) = parser.parse_args()
+
     print 'processing:', options.filename
     #try:
     S = slides(options.filename)
-    print 'to html done'
     htmlfile = S.outputPath
     pdffile = S.pdffile
-    print htmlfile, pdffile
+    print 'done writing to html:', htmlfile
+    #print htmlfile, pdffile
+    #if S.to_pdf:
+    #    export_topdf(htmlfile, pdffile)
+
+    if options.watch:
+        print "start watching changes"
+        print "to stop watching, press ctrl+c"
+        observer = Observer()
+        event_handler = MyHandler(options.filename)
+        path =  os.path.dirname(os.path.abspath(options.filename))
+        observer.schedule(event_handler, path, recursive=True)
+        observer.start()
+        try:
+            while True:
+                time.sleep(1)
+        except KeyboardInterrupt:
+            observer.stop()
+        observer.join()
+        print ""
+        print "watching stop"
+    #print "checking"
     if S.to_pdf:
-        #try:
         export_topdf(htmlfile, pdffile)
-        #except:
-        #    print 'export pdf failed somehow'
-    #except:
-    #    print 'Error opening markdown file'
-    #    sys.exit()
 
 def check_mkdir(outpath):
     directory = os.path.dirname(outpath)
@@ -42,7 +69,7 @@ def check_mkdir(outpath):
 
 def text_export(outputText, outputPath):
     check_mkdir(outputPath)
-    print 'writing file to:', outputPath
+    #print 'writing file to:', outputPath
     f = open(outputPath, 'w')
     f.write(outputText.encode("utf-8"))
     f.close()
@@ -107,7 +134,7 @@ class slides():
 
         if 'cr_word' in config:
             if not 'cr_color' in config:
-                config['cr_color'] = 'rgba(205,205,205,0.0)'
+                config['cr_color'] = rgba(205,205,205,0.0)
 
         pdf_filename = None
         to_pdf = False
@@ -222,7 +249,11 @@ class slides():
         main_text = []
         notes = []
         maintx = True
-        frag_now = False
+        #frag_now = False
+        frag_type = None
+        frag_div = ['---fragment_current-visible', '---fragment_fade-up', '---fragment_fade-down', '---fragment_fade-left', '---fragment_fade-right', '---fragment_fade-out', '---fragment_grow', '---fragment_shrink']
+        frag_span = ['---fragment_highlight-red', '---fragment_highlight-blue', '---fragment_highlight-green', '---fragment']
+        frag_close = '---fragment_close'
         for l in slide_list:
             #print l
             if l[:7]=='---data':
@@ -230,12 +261,29 @@ class slides():
             elif l[:8]=='---style':
                 bg.append(l[3:])
             elif l[:11]=='---fragment':
-                if frag_now:
-                    main_text.append('</p>')
+                if l==frag_close:
+                    if frag_type=='div':
+                        main_text.append('</div>')
+                    else:
+                        main_text.append('</span>')
+                    frag_type = None
                 else:
-                    frag_now = True
-                f_str = l[3:].replace('_',' ')
-                main_text.append('<p class="%s">'%f_str)
+                    if not frag_type is None:
+                        if frag_type=='div':
+                            main_text.append('</div>')
+                        else:
+                            main_text.append('</span>')
+                        frag_type = None
+                    #else:
+                    #    frag_now = True
+                    if l in frag_div:
+                        f_str = l[3:].replace('_',' ')
+                        main_text.append('<div class="%s">'%f_str)
+                        frag_type = 'div'
+                    else:
+                        f_str = l[3:].replace('_',' ')
+                        main_text.append('<span class="%s">'%f_str)
+                        frag_type = 'span'
             elif l[:8]=='---notes':
                 maintx = False
             else:
@@ -243,8 +291,13 @@ class slides():
                     main_text.append(l)
                 else:
                     notes.append(l)
-        if frag_now:
-            main_text.append('</p>')
+
+        if not frag_type is None:
+            if frag_type=='div':
+                main_text.append('</div>')
+            else:
+                main_text.append('</span>')
+            frag_type = None
 
         main_text_str = '\n'.join(main_text)
         #print main_text_str

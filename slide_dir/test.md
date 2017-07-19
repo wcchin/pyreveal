@@ -1,11 +1,11 @@
 title: a testing
-theme: sky
-cr_word: Benny
+theme: black
+cr_word: Benny @ 2017
 cr_color: rgba(205,205,205,0.0)
 toc: False
 reveal_path2: https://wcc-slides.netlify.com/reveal.js
 reveal_path3: ../reveal.js
-to_pdf: true
+to_pdf: false
 
 
 ---data-background="#dddddd"
@@ -14,6 +14,7 @@ to_pdf: true
 # testing 1
 
 this is a testing 1
+playing 
 
 ---right
 
@@ -21,6 +22,8 @@ this is a testing 1
 - check1 
 - check2
 - check3
+- checking 4
+hehe
 
 ---notes
 this is the speaker notes  
