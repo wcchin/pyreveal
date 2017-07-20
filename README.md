@@ -2,7 +2,7 @@
 a python package for converting markdown to reveal.js slides.
 
 ## a demo
-<iframe src="https://player.vimeo.com/video/226295024" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+[![pyreveal demo video](http://wcchin.github.io/images/pyrev_demo_vimeo.png)](https://vimeo.com/226295024)
 
 ## Why another converter?
 Previously, I was(am) using jupyter to create a notebook with slides, and convert it using jupyter+nbconvert, and even wrote some codes to customize the output html file, and convert to pdf using <a href="https://github.com/astefanutti/decktape" target="blank">phantomjs+decktape</a> automatically. So, the nbconvert can do the conversion from notebook to reveal.js. 
@@ -59,7 +59,7 @@ reveal_path: reveal.js
 ```
 
 configs:
-- title: will be put at the <title> part of the <head>
+- title: will be put at the `<title>` part of the `<head>` of the html
 - theme: available: black (default), white, league, sky, beige, simple, serif, blood, night, moon, solarized and... (THERE ARE MORE THEME FROM MY THEME DIR)
 - transition: none(default), fade, slide, convex, concave, zoom, page
 - cr_word: CopyRight word (optional), the words that appear at the footer
