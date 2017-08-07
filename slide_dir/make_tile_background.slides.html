@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js The HTML Presentation Framework</title>
+
+		<link rel="stylesheet" href="https://wcc-slides.netlify.com/reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="https://wcc-slides.netlify.com/reveal.js/css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="https://wcc-slides.netlify.com/reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'https://wcc-slides.netlify.com/reveal.js/css/print/pdf.css' : 'https://wcc-slides.netlify.com/reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+        
+		<link rel="stylesheet" href="https://wcc-slides.netlify.com/reveal.js/plugin/title-footer/title-footer.css">
+        
+        <!-- Custom stylesheet, it must be in the same directory as the html file -->
+        <link rel="stylesheet" href="custom.css">
+        <style>
+            body {
+                background:url("imgs/drawing_tile4.png") ;
+                background-repeat: repeat;
+                background-size: 600px;
+            }
+        </style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+                <section data-background="imgs/drawing_tile4.png" data-background-repeat="repeat" data-background-size="600px">
+<h1>check background</h1>
+</section>
+ <section>
+<section>
+<p>haha</p>
+</section>
+<section data-background="imgs/drawing_tile3.png" data-background-repeat="repeat" data-background-size="600px">
+<p>hehe</p>
+</section>
+</section>
+ <section>
+<section data-background="imgs/drawing_tile3.png" data-background-repeat="repeat" data-background-size="600px">
+
+</section>
+<section data-background="imgs/drawing_tile2.png" data-background-repeat="repeat" data-background-size="600px">
+
+</section>
+<section data-background="imgs/drawing_tile1.png" data-background-repeat="repeat" data-background-size="600px">
+
+</section>
+</section>
+
+			</div>
+		</div>
+
+		<script src="https://wcc-slides.netlify.com/reveal.js/lib/js/head.min.js"></script>
+		<script src="https://wcc-slides.netlify.com/reveal.js/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+                transition: Reveal.getQueryHash().transition || 'concave', // default/cube/page/concave/zoom/linear/none
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'https://wcc-slides.netlify.com/reveal.js/plugin/markdown/marked.js' },
+					{ src: 'https://wcc-slides.netlify.com/reveal.js/plugin/markdown/markdown.js' },
+					{ src: 'https://wcc-slides.netlify.com/reveal.js/plugin/notes/notes.js', async: true },
+					{ src: 'https://wcc-slides.netlify.com/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'https://wcc-slides.netlify.com/reveal.js/plugin/title-footer/title-footer.js',async: true,callback: function() {title_footer.initialize(title='pyreveal - Benny',background='rgba(205,205,205,0.0)');}}, 
+                    { src: 'https://wcc-slides.netlify.com/reveal.js/plugin/math-katex/math-katex.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
+ 

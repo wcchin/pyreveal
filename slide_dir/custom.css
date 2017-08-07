@@ -19,3 +19,6 @@ font-family: 'cwTeXHei','Raleway', sans-serif;
 .reveal H6 {
 font-family: 'cwTeXYen','Raleway', sans-serif;
 }
+.reveal a {
+color: #FF0;
+}

@@ -134,7 +134,16 @@ class slides():
 
         if 'cr_word' in config:
             if not 'cr_color' in config:
-                config['cr_color'] = rgba(205,205,205,0.0)
+                config['cr_color'] = 'rgba(205,205,205,0.0)'
+
+        if not 'background' in config:
+            config['background'] = None
+            if (bgrepeat in config) and (bgrepeat.lower()=='true'):
+                config['bgrepeat'] = True
+            else:
+                config['bgrepeat'] = False
+            if not bgsize in config:
+                config['bgsize'] = None
 
         pdf_filename = None
         to_pdf = False

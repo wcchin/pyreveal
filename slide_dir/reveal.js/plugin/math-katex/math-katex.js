@@ -20,8 +20,8 @@ window.RevealMath = window.RevealMath || (function() {
 
 	var options = Reveal.getConfig().math || {};
 
-	options.katexScript     = options.katexScript     || 'plugin/math-katex/lib/katex-0.6.0/katex.min.js';
-	options.katexStylesheet = options.katexStylesheet || 'plugin/math-katex/lib/katex-0.6.0/katex.min.css';
+	options.katexScript     = options.katexScript     || 'reveal.js/plugin/math-katex/lib/katex-0.6.0/katex.min.js';
+	options.katexStylesheet = options.katexStylesheet || 'reveal.js/plugin/math-katex/lib/katex-0.6.0/katex.min.css';
 
 	if ( options.ignoredElements ) {
 		options.ignoredElements = options.ignoredElements

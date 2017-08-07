@@ -20,8 +20,18 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? '{{ reveal_path }}/css/print/pdf.css' : '{{ reveal_path }}/css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+        
+		<link rel="stylesheet" href="{{ reveal_path }}/plugin/title-footer/title-footer.css">
+        
         <!-- Custom stylesheet, it must be in the same directory as the html file -->
-        <link rel="stylesheet" href="custom.css">
+        <link rel="stylesheet" href="custom.css">{% if not background is none %}
+        <style>
+            body {
+                background:url("{{ background }}") ;
+                background-repeat: {% if bgrepeat %}repeat{% else %}inherit{% endif %};
+                background-size: {% if not bgsize is none %}{{ bgsize }}{% else %}inherit{% endif %};
+            }
+        </style>{% endif %}
 	</head>
 	<body>
 		<div class="reveal">

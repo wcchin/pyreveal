@@ -67,12 +67,13 @@ title_footer.initialize=function(title,background)
 {
 
 	// Link to the Title-Footer CSS
-
+    /*
 	var link=document.createElement("link");
 	link.href="https://wcc-slides.netlify.com/reveal.js/plugin/title-footer/title-footer.css";
 	link.type="text/css";
 	link.rel="stylesheet";
 	document.getElementsByTagName("head")[0].appendChild(link);
+    */
 
 	// Initialize properties according to parameters
 
