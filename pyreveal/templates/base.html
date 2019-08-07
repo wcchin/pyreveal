@@ -6,20 +6,23 @@
 
 		<title>{{ title }}</title>
 
+		<!--<link rel="stylesheet" href="{{ reveal_path }}/css/reset.css">-->
 		<link rel="stylesheet" href="{{ reveal_path }}/css/reveal.css">
 		<link rel="stylesheet" href="{{ reveal_path }}/css/theme/{{ theme }}.css">
+		<link rel="stylesheet" href="{{ reveal_path }}/css/simplemenu.css">
+		<link rel="stylesheet" href="{{ reveal_path }}/css/verticator.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="{{ reveal_path }}/lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
+		<!-- Printing and PDF exports --><!--
 		<script>
 			var link = document.createElement( 'link' );
 			link.rel = 'stylesheet';
 			link.type = 'text/css';
 			link.href = window.location.search.match( /print-pdf/gi ) ? '{{ reveal_path }}/css/print/pdf.css' : '{{ reveal_path }}/css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
+		</script>-->
         
 		<link rel="stylesheet" href="{{ reveal_path }}/plugin/title-footer/title-footer.css">
         
@@ -35,12 +38,38 @@
 	</head>
 	<body>
 		<div class="reveal">
+			{% if use_simplemenu %}
+			{% if not(menu_bottom) %}
+			<div class="menubar">
+				<ul class="menu">
+					<!-- Here's the menu -->
+					{% for chapter_id, chapter_name in chapters %}
+					<li><a href="#/{{ chapter_id }}">{{ chapter_name }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+			{% endif %}
+			{% endif %}
+			<ul class="verticator">
+			</ul>
 			<div class="slides">
                 {{ slides_contents }}
 			</div>
+			{% if use_simplemenu %}
+			{% if menu_bottom %}
+			<div class="menubar">
+				<ul class="menu">
+					<!-- Here's the menu -->
+					{% for chapter_id, chapter_name in chapters %}
+					<li><a href="#/{{ chapter_id }}">{{ chapter_name }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+			{% endif %}
+			{% endif %}
 		</div>
 
-		<script src="{{ reveal_path }}/lib/js/head.min.js"></script>
+		<!--<script src="{{ reveal_path }}/lib/js/head.min.js"></script>-->
 		<script src="{{ reveal_path }}/js/reveal.js"></script>
 
 		<script>
@@ -48,16 +77,27 @@
 			Reveal.initialize({
 				history: true,
                 transition: Reveal.getQueryHash().transition || '{{ transition }}', // default/cube/page/concave/zoom/linear/none
-
+                verticator: { color: '#acc2d9' }, {% if use_simplemenu %}
+				simplemenu: {
+					menuselector: '.menu li',
+					activeclass: 'active'
+				}, {% endif %}
+				slideNumber: true,
+				slideNumber: 'h.v', 
+				showSlideNumber: 'all',
+                pdfExportShortcut: 'E',
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
 					{ src: '{{ reveal_path }}/plugin/markdown/marked.js' },
 					{ src: '{{ reveal_path }}/plugin/markdown/markdown.js' },
 					{ src: '{{ reveal_path }}/plugin/notes/notes.js', async: true },
-					{ src: '{{ reveal_path }}/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },{% if not(cr_word is none) %}
-                    { src: '{{ reveal_path }}/plugin/title-footer/title-footer.js',async: true,callback: function() {title_footer.initialize(title='{{ cr_word }}',background='{{ cr_color }}');}}, {% endif %}{% if toc %}
-                    { src: '{{ reveal_path }}/plugin/toc-progress/toc-progress.js', async: true, callback: function() { toc_progress.initialize(); toc_progress.create(); } }, {% endif %}
-                    { src: '{{ reveal_path }}/plugin/math-katex/math-katex.js', async: true }
+					{ src: '{{ reveal_path }}/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }, 
+                    { src: '{{ reveal_path }}/plugin/pdfexport/pdfexport.js', async: true },
+					{ src: '{{ reveal_path }}/plugin/verticator/verticator.js' }, {% if not(cr_word is none) %}
+                    { src: '{{ reveal_path }}/plugin/title-footer/title-footer.js', async: true,callback: function() {title_footer.initialize(title='{{ cr_word }}',background='{{ cr_color }}');}}, {% endif %} {% if use_katex %}
+                    { src: '{{ reveal_path }}/plugin/katex/katex.js', async: true},  {% endif %} {% if use_simplemenu %} 
+                    { src: '{{ reveal_path }}/plugin/simplemenu/simplemenu.js' }, {% endif %}{% if use_menu %} 
+                    { src: '{{ reveal_path }}/plugin/menu/menu.js' }, {% endif %}
 				]
 			});
 		</script>

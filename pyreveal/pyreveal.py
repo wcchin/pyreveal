@@ -2,7 +2,7 @@
 from optparse import OptionParser
 import sys
 import os
-import subprocess
+#import subprocess ## for export pdf using decktape
 from shutil import copyfile
 import copy
 import markdown
@@ -35,9 +35,8 @@ def main():
     #try:
     S = slides(options.filename)
     htmlfile = S.outputPath
-    pdffile = S.pdffile
     print 'done writing to html:', htmlfile
-    #print htmlfile, pdffile
+    #pdffile = S.pdffile
     #if S.to_pdf:
     #    export_topdf(htmlfile, pdffile)
 
@@ -58,8 +57,8 @@ def main():
         print ""
         print "watching stop"
     #print "checking"
-    if S.to_pdf:
-        export_topdf(htmlfile, pdffile)
+    #if S.to_pdf:
+    #    export_topdf(htmlfile, pdffile)
 
 def check_mkdir(outpath):
     directory = os.path.dirname(outpath)
@@ -83,6 +82,7 @@ def copy_directories(static_path_in, static_path_out):
             check_mkdir(outf)
             copyfile(inf, outf)
 
+"""
 def export_topdf(htmlfile, pdffile):
     #print htmlfile
     pyrev_path = os.path.dirname(__file__)
@@ -93,11 +93,12 @@ def export_topdf(htmlfile, pdffile):
     process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
     output, error = process.communicate()
     print 'Error message:', error
+"""
 
 class slides():
     def __init__(self, afile):
         doc, config = self.process_md(afile)
-        slides_content = self.process_slides(doc)
+        slides_content, chapter_list = self.process_slides(doc)
         #print doc, config
 
         base_dir = os.path.abspath(os.path.dirname(afile))
@@ -119,6 +120,12 @@ class slides():
             else:
                 config['toc'] = False
 
+        if 'use_katex' in config:
+            if config['use_katex'].lower().replace(' ','')=='true':
+                config['use_katex'] = True
+            else:
+                config['use_katex'] = False
+
         if 'reveal_path' in config:
             reveal_path = config['reveal_path']
             #del config['reveal_path']
@@ -133,18 +140,21 @@ class slides():
             config['theme'] = 'black'
 
         if 'cr_word' in config:
+            if config['cr_word']=='--':
+                config['cr_word'] = None
             if not 'cr_color' in config:
                 config['cr_color'] = 'rgba(205,205,205,0.0)'
 
         if not 'background' in config:
             config['background'] = None
-            if (bgrepeat in config) and (bgrepeat.lower()=='true'):
+            if ('bgrepeat' in config) and (config['bgrepeat'].lower()=='true'):
                 config['bgrepeat'] = True
             else:
                 config['bgrepeat'] = False
-            if not bgsize in config:
+            if not 'bgsize' in config:
                 config['bgsize'] = None
 
+        """
         pdf_filename = None
         to_pdf = False
         if 'pdf_filename' in config:
@@ -157,11 +167,34 @@ class slides():
                 to_pdf = False
             del config['to_pdf']
         self.to_pdf = to_pdf
+        """
 
+        if 'use_katex' in config and (config['use_katex'].lower()=='true'):
+            config['use_katex'] = True
+        else:
+            config['use_katex'] = False
+
+        if 'menu_bottom' in config and (config['menu_bottom'].lower()=='true'):
+            config['menu_bottom'] = True
+        else:
+            config['menu_bottom'] = False
 
         maindic = {}
         maindic['slides_contents'] = slides_content
         maindic.update(config)
+
+        if len(chapter_list)>0:
+            maindic.update({'chapters': chapter_list})
+            if not('use_simplemenu' in config):
+                maindic.update({'use_simplemenu': True})
+            else:
+                if config['use_simplemenu'].lower()=='true':
+                    maindic.update({'use_simplemenu': True})
+                else:
+                    maindic.update({'use_simplemenu': False})
+        else:
+            maindic.update({'use_simplemenu': False})
+
 
         pyrev_path = os.path.dirname(__file__)
         template_path = os.path.join(pyrev_path,'templates')
@@ -174,9 +207,9 @@ class slides():
 
         outputPath = os.path.join(base_dir, output_dir, output_fname)
         self.outputPath = outputPath
-        self.pdffile = outputPath.replace('.html','.pdf')
-        if not pdf_filename is None:
-            self.pdffile = pdf_filename
+        #self.pdffile = outputPath.replace('.html','.pdf')
+        #if not pdf_filename is None:
+        #    self.pdffile = pdf_filename
 
         text_export(outputText, outputPath)
 
@@ -191,6 +224,13 @@ class slides():
         #reveal_path0 = os.path.join(base_dir, reveal_path)
         #print reveal_path_f
         #print base_dir_f
+
+        if config['use_katex']:
+            katex_path = os.path.join(base_dir, output_dir, 'plugin', 'katex')
+            if not os.path.exists(katex_path):
+                katex_src = os.path.join(pyrev_path,'reveal_js', 'plugin', 'katex')
+                copy_directories(katex_src, katex_path)
+
 
     def process_md(self, afile):
         with open(afile, 'r') as f:
@@ -240,23 +280,45 @@ class slides():
             slides.append(asetofslide)
 
         slides_strs_list = []
+        chapter_list = []
         for asetofslide in slides:
             slide_strs = ''
             #print len(asetofslide)
+            chap_name = ''
+            chap_id = ''
             for s in asetofslide:
-                slide_str = self.process_a_slide(s)
+                slide_str, chap_item = self.process_a_slide(s)
                 slide_strs += slide_str
-            if len(asetofslide)>1:
-                slide_strs = '<section>\n'+slide_strs+'</section>\n'
+                if len(chap_name)==0: chap_name = chap_item
+            if len(chap_name)>0:
+                chap_id = chap_name.replace(' ','-')
+                chapter_list.append((chap_id, chap_name))
+                if len(asetofslide)>1:
+                    ## add menu things in section tags
+                    slide_strs = slide_strs.replace('<section', '<section id="'+chap_id+'"', 1)
+                    slide_strs = '<section data-menu-title="'+chap_id+'">\n'+slide_strs+'</section>\n'
+                else:
+                    # got chapter name but only one slide
+                    slide_strs = slide_strs.replace('<section', '<section id="'+chap_id+'" data-menu-title="'+chap_id+'"', 1)
+            else:
+                # no chapter name
+                if len(asetofslide)>1:
+                    slide_strs = '<section>\n'+slide_strs+'</section>\n'
+
             slides_strs_list.append(slide_strs)
         contents_str = ' '.join(slides_strs_list)
-        return contents_str
+        chapter_list2 = []
+        for chap_id, chap_name in chapter_list:
+            if not((chap_id,chap_name) in chapter_list2):
+                chapter_list2.append((chap_id, chap_name))
+        return contents_str, chapter_list2
 
     def process_a_slide(self, slide_list):
         #print slide_list
         bg = []
         main_text = []
         notes = []
+        chap_item = ''
         maintx = True
         #frag_now = False
         frag_type = None
@@ -295,11 +357,14 @@ class slides():
                         frag_type = 'span'
             elif l[:8]=='---notes':
                 maintx = False
+            elif l[:11]=='---chapter=':
+                chap_item = l[11:]
             else:
                 if maintx:
                     main_text.append(l)
                 else:
                     notes.append(l)
+
 
         if not frag_type is None:
             if frag_type=='div':
@@ -328,7 +393,7 @@ class slides():
             html = html + notes_str
 
         html = '<section'+bg_str+'>\n'+html+'\n</section>\n'
-        return html
+        return html, chap_item
 
 if __name__ == '__main__':
     afile = 'testing/test.md'

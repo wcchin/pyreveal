@@ -20,5 +20,16 @@ font-family: 'cwTeXHei','Raleway', sans-serif;
 font-family: 'cwTeXYen','Raleway', sans-serif;
 }
 .reveal a {
-color: #FF0;
+color: #75bbfd;
+}
+
+.reveal ul.menu li.active a { 
+color: #0652ff;
+font-weight: 900;
+}
+
+.reveal .slide-number {
+font-size: 19pt;
+right: 36px;
+bottom: 40px;
 }

@@ -3,12 +3,12 @@ from setuptools import setup, find_packages
 setup(
     name="pyreveal",
 
-    version="0.0.1",
+    version="0.1.1",
     
     author="Benny Chin",
     author_email="wcchin.88@gmail.com",
 
-    packages=['pyreveal', 'pyreveal.decktape', 'pyreveal.reveal_js', 'pyreveal.templates'],
+    packages=['pyreveal', 'pyreveal.docdata', 'pyreveal.reveal_js', 'pyreveal.templates'],
     #package_dir={'':'pyreveal'},
 
     include_package_data=True,
@@ -38,7 +38,7 @@ setup(
     install_requires=[
         "jinja2",
         "markdown",
-        "docdata",
+        "watchdog",
     ],
     entry_points = {
         "console_scripts": ['pyreveal = pyreveal.pyreveal:main']

@@ -1,3 +1,5 @@
+README.md
+setup.py
 pyreveal/__init__.py
 pyreveal/__main__.py
 pyreveal/pyreveal.py
@@ -7,3 +9,6 @@ pyreveal.egg-info/dependency_links.txt
 pyreveal.egg-info/entry_points.txt
 pyreveal.egg-info/requires.txt
 pyreveal.egg-info/top_level.txt
+pyreveal/docdata/__init__.py
+pyreveal/docdata/mmddata.py
+pyreveal/docdata/yamldata.py
