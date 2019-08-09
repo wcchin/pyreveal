@@ -237,7 +237,8 @@ it is two dashes. This will be recognize as not using them, thus not showing the
 run this and done.
 
 ```sh
-python -m pyreveal -i whatever.md -w
+pyreveal -i whatever.md -w
+# or add python -m in front
 ```
 
 The two arguments:
@@ -247,7 +248,8 @@ The two arguments:
 If the md file is in a sub-directory, simple use:
 
 ```sh
-python -m pyreveal -i subdir/whatever.md -w
+pyreveal -i subdir/whatever.md -w
+# or add python -m in front
 ```
 
 This will also work. And this is handy if the reveal path is set at the upper level (e.g. "../reveal.js") for share usage. 
