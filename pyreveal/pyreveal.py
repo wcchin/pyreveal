@@ -145,6 +145,8 @@ class slides():
         if 'cr_word' in config:
             if config['cr_word']=='--':
                 config['cr_word'] = None
+            else:
+                config['cr_word'] = config['cr_word']#self.check_icons(config['cr_word'])
             if not 'cr_color' in config:
                 config['cr_color'] = 'rgba(205,205,205,0.0)'
 
