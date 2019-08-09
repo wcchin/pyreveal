@@ -2,8 +2,9 @@ title: testing watchdog
 theme: black
 cr_word: Benny @ 2017 generated with love using pyreveal
 cr_color: rgba(205,205,205,0.0)
-toc: False
-to_pdf: false
+use_simplemenu: true
+menu_bottom: false
+use_menu: true
 
 # hey man
 testing  
@@ -41,3 +42,11 @@ testing notes
 ---down
 這是一些中文字  
 and some ABC
+
+---down
+
+testing fontawesome: :fab-facebook:
+:fas-camera:  
+and typicons:
+:typcn-camera:  
+:typcn-wi-fi-outline:

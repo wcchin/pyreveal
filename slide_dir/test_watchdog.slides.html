@@ -6,20 +6,28 @@
 
 		<title>testing watchdog</title>
 
+		<!--<link rel="stylesheet" href="reveal.js/css/reset.css">-->
 		<link rel="stylesheet" href="reveal.js/css/reveal.css">
-		<link rel="stylesheet" href="reveal.js/css/theme/sky.css">
+		<link rel="stylesheet" href="reveal.js/css/theme/black.css">
+		<link rel="stylesheet" href="reveal.js/css/simplemenu.css">
+		<link rel="stylesheet" href="reveal.js/css/verticator.css">
+		<link rel="stylesheet" href="reveal.js/css/typicons/typicons.min.css">
+        <link rel="stylesheet" href="reveal.js/css/fontawesome/css/fontawesome.min.css">
+		<link rel="stylesheet" href="reveal.js/css/fontawesome/css/brands.min.css">
+		<link rel="stylesheet" href="reveal.js/css/fontawesome/css/solid.min.css">
+
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
+		<!-- Printing and PDF exports --><!--
 		<script>
 			var link = document.createElement( 'link' );
 			link.rel = 'stylesheet';
 			link.type = 'text/css';
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
+		</script>-->
         
 		<link rel="stylesheet" href="reveal.js/plugin/title-footer/title-footer.css">
         
@@ -28,6 +36,9 @@
 	</head>
 	<body>
 		<div class="reveal">
+			
+			<ul class="verticator">
+			</ul>
 			<div class="slides">
                 <section>
 <section>
@@ -68,12 +79,20 @@ this is</p>
 <p>這是一些中文字<br />
 and some ABC</p>
 </section>
+<section>
+<p>testing fontawesome: <i class="fab fa-facebook"></i>
+<i class="fas fa-camera"></i><br />
+and typicons:
+<span class="typcn typcn-camera"></span><br />
+<span class="typcn typcn-wi-fi-outline"></span></p>
+</section>
 </section>
 
 			</div>
+			
 		</div>
 
-		<script src="reveal.js/lib/js/head.min.js"></script>
+		<!--<script src="reveal.js/lib/js/head.min.js"></script>-->
 		<script src="reveal.js/js/reveal.js"></script>
 
 		<script>
@@ -81,15 +100,21 @@ and some ABC</p>
 			Reveal.initialize({
 				history: true,
                 transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/none
-
+                verticator: { color: '#acc2d9' }, 
+				slideNumber: true,
+				slideNumber: 'h.v', 
+				showSlideNumber: 'all',
+                pdfExportShortcut: 'E',
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
 					{ src: 'reveal.js/plugin/markdown/marked.js' },
 					{ src: 'reveal.js/plugin/markdown/markdown.js' },
 					{ src: 'reveal.js/plugin/notes/notes.js', async: true },
-					{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-                    { src: 'reveal.js/plugin/title-footer/title-footer.js',async: true,callback: function() {title_footer.initialize(title='Benny @ 2017 generated with love using pyreveal',background='rgba(205,205,205,0.0)');}}, 
-                    { src: 'reveal.js/plugin/math-katex/math-katex.js', async: true }
+					{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }, 
+                    { src: 'reveal.js/plugin/pdfexport/pdfexport.js', async: true },
+					{ src: 'reveal.js/plugin/verticator/verticator.js' }, 
+                    { src: 'reveal.js/plugin/title-footer/title-footer.js', async: true,callback: function() {title_footer.initialize(title='Benny @ 2017 generated with love using pyreveal',background='rgba(205,205,205,0.0)');}},    
+                    { src: 'reveal.js/plugin/menu/menu.js' }, 
 				]
 			});
 		</script>
