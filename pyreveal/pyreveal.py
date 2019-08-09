@@ -1,16 +1,19 @@
 # -*- coding: utf-8 -*-
-from optparse import OptionParser
-import sys
+
 import os
-#import subprocess ## for export pdf using decktape
-from shutil import copyfile
+import time
 import copy
+import re
+from shutil import copyfile
+from optparse import OptionParser
+
 import markdown
-from docdata.mmddata import get_data
 import jinja2
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
-import time
+
+from docdata.mmddata import get_data
+
 
 class MyHandler(FileSystemEventHandler):
     def __init__(self, infile):
@@ -373,6 +376,12 @@ class slides():
                 main_text.append('</span>')
             frag_type = None
 
+        ## should be here for check_icons
+        main_text2 = []
+        for line in main_text:
+            main_text2.append(self.check_icons(line))
+        main_text = main_text2
+
         main_text_str = '\n'.join(main_text)
         #print main_text_str
 
@@ -394,6 +403,25 @@ class slides():
 
         html = '<section'+bg_str+'>\n'+html+'\n</section>\n'
         return html, chap_item
+
+    def check_icons(self, astring):
+        sets = ['fab', 'fas', 'fal', 'far', 'fad']
+        patterns = [ '\:{}-(.*?)\:'.format(setname) for setname in sets ]
+        matches = [ re.findall(pat, astring) for pat in patterns ]
+        bstring = copy.copy(astring)
+        for mat, setname in zip(matches, sets):
+            for m1 in mat:
+                tag = '<i class="{} fa-{}"></i>'.format(setname, m1)
+                target = ':{}-{}:'.format(setname, m1)
+                bstring = bstring.replace(target, tag)
+
+        pat_typcn = '\:typcn-(.*?)\:'
+        mat = re.findall(pat_typcn, bstring)
+        for m1 in mat:
+            tag = '<span class="typcn typcn-{}"></span>'.format(m1)
+            target = ':typcn-{}:'.format(m1)
+            bstring = bstring.replace(target, tag)
+        return bstring
 
 if __name__ == '__main__':
     afile = 'testing/test.md'
