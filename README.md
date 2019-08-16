@@ -1,5 +1,21 @@
+---
+top_title: pyreveal, a python package for converting markdown to reveal.js slides
+project_name: pyreveal
+smart_title: a markdown to revealjs engine 
+author: wcchin
+short_description: a python package for converting markdown to reveal.js slides
+keywords: [reveealjs, markdown, python]
+three_concepts: [':typcn-lightbulb:', ':fab-markdown:', ':fas-chart-area:']
+three_desc: [get some idea, write with markdown, and present it]
+concept_color: '#33C3F0'
+project_url: https://github.com/wcchin/carlae
+project_url_title: go to project page
+theme: skeleton
+carlae_dir: carlae_page
+---
+
 # pyreveal
-a python package for converting markdown to reveal.js slides.
+**a python package for converting markdown to reveal.js slides**
 
 ## a demo
 [![pyreveal demo video](http://wcchin.github.io/images/pyrev_demo_vimeo.png)](https://vimeo.com/226295024)
@@ -39,6 +55,8 @@ What we need, is that the static html file can be generated automatically, and w
 
 Therefore, I decided to write a converter that take a simple md, and convert it to reveal.js slides using jinja2. 
 
+# Getting started
+
 ## Demo
 
 a demo is <a href="https://wcc-slides.netlify.com/2017/pyreveal/demo.slides.html#/" target="blank">here</a>. 
@@ -64,7 +82,9 @@ pip install -e .
 5. if the '-w' is used in the command, the slides will change according to the modification of the whatever.md file (and custom.css). 
 6. done
 
-### slides configuration
+# Documentation
+
+## slides configuration
 
 pyreveal will read the first several lines of the whatever.md file and get the metadata as the configs, using the <a href="https://github.com/waylan/docdata" target="blank">**docdata**</a> package . 
 
@@ -91,7 +111,7 @@ configs:
 - to_pdf: default to false, if true, will create a pdf version of the slides, using phantomjs. to use the to_pdf function, please check and install phantomjs following the <a href="https://github.com/astefanutti/decktape">decktape instruction</a> and <a href="http://phantomjs.org/" target="blank">phantomjs instruction</a>.
 - reveal_path: optional, default to 'reveal.js'(the same directory as the output html)
 
-### the special keyword for generating slides and some other functions
+## the special keyword for generating slides and some other functions
 
 pyreveal use a list of escape keyword to generate the function for reveal.js:
 
@@ -103,7 +123,7 @@ pyreveal use a list of escape keyword to generate the function for reveal.js:
 
 where, the *keyword* include: right, down, data*, style*, fragment, notes
 
-### slides break
+## slides break
 there are two types of slides break:
 
 ```markdown
@@ -124,7 +144,7 @@ OR,
 
 the following slide will appear at bottom, i.e. a subslide. 
 
-### slide background and style
+## slide background and style
 
 ```markdown
 
@@ -140,7 +160,7 @@ The same goes for style.
 
 For more detail, check the corresponding demo.md file that generate something similar to the demo in the original reveal.js website. 
 
-### fragment
+## fragment
 
 for fragment, pyreveal also use something like this:
 
@@ -157,7 +177,7 @@ pyreveal will just put the tag after the '---' (with replacing the '_' with a bl
 
 Just some minor different, that shows in the demo file, the word "highlight" does not sit at there at first.
 
-### speaker notes
+## speaker notes
 
 finally, the speaker notes. 
 
@@ -173,9 +193,9 @@ line 3
 
 
 
-## something new
+# something new
 
-### to use simple-menu
+## to use simple-menu
 
 simple-menu is the links on top of the slide, check this plugin page: [the plugin for a simple and nice top or bottom menu bar](https://github.com/Martinomagnifico/reveal.js-simplemenu).
 
@@ -198,7 +218,7 @@ on each top slide, add
 
 the "some fancy title" will be on the top of the slide now
 
-### to use menu
+## to use menu
 
 menu is the one that can be toggle by clicking the button at the bottom left, and it appear on the left hand side, as a slides tree. [the plugin for slide-out menu for reveal.js](https://github.com/denehyg/reveal.js-menu).
 
@@ -210,7 +230,7 @@ use_menu: true
 
 at the top setting area. 
 
-### to use katex
+## to use katex
 
 if there is any latex equation, remember to add
 
@@ -222,7 +242,7 @@ at the top setting area. [Katex for reveal.js plugin](https://github.com/JeremyH
 
 
 
-### to NOT use the footer title 
+## to NOT use the footer title 
 
 I just realize in the previous version, it is force to use the footer. So if not using it, remember to set:
 
@@ -232,13 +252,16 @@ cr_word: --
 
 it is two dashes. This will be recognize as not using them, thus not showing the title as previous version will do. 
 
-### usage
+
+# Usage
+
+## run
 
 run this and done.
 
 ```sh
 pyreveal -i whatever.md -w
-# or add python -m in front
+#or add python -m in front
 ```
 
 The two arguments:
@@ -249,20 +272,20 @@ If the md file is in a sub-directory, simple use:
 
 ```sh
 pyreveal -i subdir/whatever.md -w
-# or add python -m in front
+#or add python -m in front
 ```
 
 This will also work. And this is handy if the reveal path is set at the upper level (e.g. "../reveal.js") for share usage. 
 
 
-### custom.css
+## custom.css
 
 Same as the output of the nbconvert, the output of the pyreveal will also try to read a custom.css at the same directory of the output html file. 
 So, it is possible and easy to change something for the slides, e.g. change the fonts. 
 
 
 
-## Next plan
+# Next plan
 
 Next thing to do should be try to read the jupyter notebook file, and convert the slides content from notebook to the reveal.js html. 
 Because I still hope that the <cell> tags should be remove, and the speaker notes should be fixed.  

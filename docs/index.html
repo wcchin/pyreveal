@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="UTF-8">
+  <title>pyreveal, a python package for converting markdown to reveal.js slides</title>
+  <meta name="description" content="">
+  <meta name="author" content="wcchin">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="css/css.css" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/custom.css">
+  <!--<link rel="stylesheet" href="css/typicons/typicons.min.css">-->
+  <!--<link rel="stylesheet" href="css/fontawesome/css/fontawesome.min.css">
+  <link rel="stylesheet" href="css/fontawesome/css/brands.min.css">
+  <link rel="stylesheet" href="css/fontawesome/css/solid.min.css">-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typicons.font@2.0.9/src/font/typicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/fontawesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/brands.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/solid.min.css">
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script type="text/javascript" async="" src="js/ga.js"></script><script id="twitter-wjs" src="js/widgets.js"></script><script src="js/jquery.js"></script>
+  <script src="js/run_prettify.html"></script>
+  <link rel="stylesheet" href="css/github-prettify-theme.css">
+  <script src="js/site.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="http://getskeleton.com/dist/images/favicon.png">
+
+<script charset="utf-8" src="js/button.js"></script></head>
+<body class="code-snippets-visible">
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <section class="header">
+      <h1 class="title"> pyreveal </h1>
+      <h2 class="title"> a markdown to revealjs engine </h2>
+      
+      <a class="button button-primary" href="https://github.com/wcchin/carlae" > go to project page </a>
+      
+      
+      <div class="value-props row">
+		
+        <div class="four columns value-prop">
+		  <h1 style="color:#33C3F0;"><span class="typcn typcn-lightbulb"></span></h1>
+          get some idea
+        </div>
+        
+        <div class="four columns value-prop">
+		  <h1 style="color:#33C3F0;"><i class="fab fa-markdown"></i></h1>
+          write with markdown
+        </div>
+        
+        <div class="four columns value-prop">
+		  <h1 style="color:#33C3F0;"><i class="fas fa-chart-area"></i></h1>
+          and present it
+        </div>
+        
+      </div>
+      
+    </section>
+
+	
+    <div class="navbar-spacer"></div>
+    <nav class="navbar">
+      <div class="container">
+        <ul class="navbar-list">
+          <!--<li class="navbar-item"><a class="navbar-link" href="#"><large>pyreveal</large></a></li>-->
+		  
+          <li class="navbar-item">
+            <a class="navbar-link" href="#" data-popover="#codeNavPopoverpyreveal">pyreveal</a>
+            <div id="codeNavPopoverpyreveal" class="popover">
+              <ul class="popover-list">
+                <li class="popover-item">
+                  <a class="popover-link" href="#pyreveal">pyreveal</a>
+                </li>
+                
+                <li class="popover-item">
+                  <a class="popover-link" href="#ademo">a demo</a>
+                </li>
+                
+                <li class="popover-item">
+                  <a class="popover-link" href="#aftersometime">After some time</a>
+                </li>
+                
+                <li class="popover-item">
+                  <a class="popover-link" href="#whyanotherconverter?">Why another converter?</a>
+                </li>
+                
+              </ul>
+            </div>
+          </li>
+          
+          <li class="navbar-item">
+            <a class="navbar-link" href="#" data-popover="#codeNavPopovergettingstarted">Getting started</a>
+            <div id="codeNavPopovergettingstarted" class="popover">
+              <ul class="popover-list">
+                <li class="popover-item">
+                  <a class="popover-link" href="#gettingstarted">Getting started</a>
+                </li>
+                
+                <li class="popover-item">
+                  <a class="popover-link" href="#demo">Demo</a>
+                </li>
+                
+                <li class="popover-item">
+                  <a class="popover-link" href="#install">Install</a>
+                </li>
+                
+                <li class="popover-item">
+                  <a class="popover-link" href="#using">Using</a>
+                </li>
+                
+              </ul>
+            </div>
+          </li>
+          
+          <li class="navbar-item">
+            <a class="navbar-link" href="#" data-popover="#codeNavPopoverdocumentation">Documentation</a>
+            <div id="codeNavPopoverdocumentation" class="popover">
+              <ul class="popover-list">
+                <li class="popover-item">
+                  <a class="popover-link" href="#documentation">Documentation</a>
+                </li>
+                
+                <li class="popover-item">
+                  <a class="popover-link" href="#slidesconfiguration">slides configuration</a>
+                </li>
+                
+                <li class="popover-item">
+                  <a class="popover-link" href="#thespecialkeywordforgeneratingslidesandsomeotherfunctions">the special keyword for generating slides and some other functions</a>
+                </li>
+                
+                <li class="popover-item">
+                  <a class="popover-link" href="#slidesbreak">slides break</a>
+                </li>
+                
+                <li class="popover-item">
+                  <a class="popover-link" href="#slidebackgroundandstyle">slide background and style</a>
+                </li>
+                
+                <li class="popover-item">
+                  <a class="popover-link" href="#fragment">fragment</a>
+                </li>
+                
+                <li class="popover-item">
+                  <a class="popover-link" href="#speakernotes">speaker notes</a>
+                </li>
+                
+              </ul>
+            </div>
+          </li>
+          
+          <li class="navbar-item">
+            <a class="navbar-link" href="#" data-popover="#codeNavPopoversomethingnew">something new</a>
+            <div id="codeNavPopoversomethingnew" class="popover">
+              <ul class="popover-list">
+                <li class="popover-item">
+                  <a class="popover-link" href="#somethingnew">something new</a>
+                </li>
+                
+                <li class="popover-item">
+                  <a class="popover-link" href="#tousesimple-menu">to use simple-menu</a>
+                </li>
+                
+                <li class="popover-item">
+                  <a class="popover-link" href="#tousemenu">to use menu</a>
+                </li>
+                
+                <li class="popover-item">
+                  <a class="popover-link" href="#tousekatex">to use katex</a>
+                </li>
+                
+                <li class="popover-item">
+                  <a class="popover-link" href="#tonotusethefootertitle">to NOT use the footer title </a>
+                </li>
+                
+              </ul>
+            </div>
+          </li>
+          
+          <li class="navbar-item">
+            <a class="navbar-link" href="#" data-popover="#codeNavPopoverusage">Usage</a>
+            <div id="codeNavPopoverusage" class="popover">
+              <ul class="popover-list">
+                <li class="popover-item">
+                  <a class="popover-link" href="#usage">Usage</a>
+                </li>
+                
+                <li class="popover-item">
+                  <a class="popover-link" href="#run">run</a>
+                </li>
+                
+                <li class="popover-item">
+                  <a class="popover-link" href="#custom.css">custom.css</a>
+                </li>
+                
+              </ul>
+            </div>
+          </li>
+          
+          <li class="navbar-item">
+            <a class="navbar-link" href="#" data-popover="#codeNavPopovernextplan">Next plan</a>
+            <div id="codeNavPopovernextplan" class="popover">
+              <ul class="popover-list">
+                <li class="popover-item">
+                  <a class="popover-link" href="#nextplan">Next plan</a>
+                </li>
+                
+                <li class="popover-item">
+                  <a class="popover-link" href="#additionthemes">addition themes</a>
+                </li>
+                
+              </ul>
+            </div>
+          </li>
+          
+        </ul>
+      </div>
+    </nav>
+    
+
+    <!-- main text area -->
+    <div class="docs-section" id="intro">
+	  <h1 id="pyreveal">pyreveal</h1>
+
+<p><strong>a python package for converting markdown to reveal.js slides</strong></p>
+<h2 id="ademo">a demo</h2>
+
+<p><a href="https://vimeo.com/226295024"><img alt="pyreveal demo video" src="http://wcchin.github.io/images/pyrev_demo_vimeo.png" /></a></p>
+<h2 id="aftersometime">After some time</h2>
+
+<p>About two years ago, I wrote pyreveal to automate the conversion from MD to slides in html powered with reveal.js (with my own flavor of syntax). After that, I was busying on my researches and dissertation writing etc., thus abandoned this project for a while. </p>
+<p>During the two years, I tried some other ways to generate slides. For my formal presentations (my defense and interviews) I used Google Slides, because it is more stable and easy to change (drag and drop etc). For some smaller discussion, I tried Marp (which is a great project). There are quite a lot of alternative out there. I love Marp and even thinking on writing my own theme to use with it. But then I realize that they stop the development and maintenances of Marp desktop app. They are moving forward to newer ecosystem, and the desktop app is part of the future product, i.e. currently no available. Their documentation on using the alternative cloud version is not that complete, I can't find an easy way to do it (like read the instruction and done by 10 mins), so I give up on them for now (and keep the discontinued Marp desktop app for some quick use situation). </p>
+<p>GitPitch is another promising and <strong>seems like</strong> a very good piece of work. The cloud version works as simple as forking the example. But there is some confusion in the documentation. I am trying to use their so called "<strong>GitPitch Desktop Free Edition</strong>" that is listed under the "<strong>Free - The basic plan for everyone on GitHub, GitLab, and Bitbucket - $ 0</strong>. But I wasted 1 hour to read the doc and install docker blablabla.... and to find the <em>GitPitch Desktop Access Management</em> for to get the approval for downloading the docker image. After wasted 1 hour on it, I gave up on them. <strong>ALL desktop application leads to the subscribe on non-free plan</strong>. Well, I actually don't like so much on the docker way to start the desktop app also....</p>
+<p>So, without other quick way to generate slides from MD for now, I back to my old project. </p>
+<p>This time, I updated the reveal.js version, added some really nice plugin (menu, simple-menu, katex, verticator, pdfexport, and title-footer). The toc plugin is replaced by the menu and simple-menu. To use the simple-menu, I added a new way (syntax, i.e. ---chapter=) to name the chapter in the python script; to use the tex style equation, the katex needed to be copied to the current slide html dir; and of course fixed some small bugs. </p>
+<p>One big change I have done this time is dropped the Phantom.js and decktape.js, to keep things as simple as possible (no need to npm install any thing now). I also copied the docdata into the pyreveal package, because I don't know why pip install docdata will lead to some weird situation. This would be more intuitive and less dependencies nightmare. </p>
+<p>The current dependencies included:</p>
+<ul>
+<li>jinja2</li>
+<li>markdown</li>
+<li>watchdog</li>
+</ul>
+<h2 id="whyanotherconverter?">Why another converter?</h2>
+
+<p>Previously, I was(am) using jupyter to create a notebook with slides, and convert it using jupyter+nbconvert, and even wrote some codes to customize the output html file~~, and convert to pdf using <a href="https://github.com/astefanutti/decktape" target="blank">phantomjs+decktape</a> automatically~~. So, the nbconvert can do the conversion from notebook to reveal.js. </p>
+<p>But, I don't understand why they keep the cell tags, which make it a pain while customizing the themes, and the custom.css, that following the tutorials or answers from stackoverflow to customize the reveal.js (the js), the codes will not work for the nbconvert version of slides.html. </p>
+<p>Plus, the speaker notes function is still not working for jupyter+nbconvert. ~~not sure about this for now~~</p>
+<p>One more thing, if you change the contents in the notebook cell, you will need to run the nbconvert command again to generate the static html file. 
+What we need, is that the static html file can be generated automatically, and we can see the result as soon as we change the md file.</p>
+<p>Therefore, I decided to write a converter that take a simple md, and convert it to reveal.js slides using jinja2. </p>
+<h1 id="gettingstarted">Getting started</h1>
+
+<h2 id="demo">Demo</h2>
+
+<p>a demo is <a href="https://wcc-slides.netlify.com/2017/pyreveal/demo.slides.html#/" target="blank">here</a>. </p>
+<p>The codes that generate the demo slides is in the slide_dir directory.</p>
+<h2 id="install">Install</h2>
+
+<p>```sh</p>
+<p>git clone https://github.com/wcchin/pyreveal.git
+cd pyreveal
+pip install -e .</p>
+<p>```</p>
+<h2 id="using">Using</h2>
+
+<ol>
+<li>cd your_slides_dir</li>
+<li>create a file named whatever.md (with .md extension)</li>
+<li>follow the instruction in the following sections and write the slides content inside the whatever.md </li>
+<li>run the command, see the following "usage" section</li>
+<li>if the '-w' is used in the command, the slides will change according to the modification of the whatever.md file (and custom.css). </li>
+<li>done</li>
+</ol>
+<h1 id="documentation">Documentation</h1>
+
+<h2 id="slidesconfiguration">slides configuration</h2>
+
+<p>pyreveal will read the first several lines of the whatever.md file and get the metadata as the configs, using the <a href="https://github.com/waylan/docdata" target="blank"><strong>docdata</strong></a> package . </p>
+<p>```markdown</p>
+<p>title: reveal.js The HTML Presentation Framework
+theme: black
+transition: concave
+cr_word: author - 2017
+cr_color: rgba(205,205,205,0.0)
+toc: False
+to_pdf: false
+reveal_path: reveal.js</p>
+<p>```</p>
+<p>configs:
+- title: will be put at the <code>&lt;title&gt;</code> part of the <code>&lt;head&gt;</code> of the html
+- theme: available: black (default), white, league, sky, beige, simple, serif, blood, night, moon, solarized and... (THERE ARE MORE THEME FROM MY THEME DIR)
+- transition: none(default), fade, slide, convex, concave, zoom, page
+- cr_word: CopyRight word (optional), the words that appear at the footer
+- cr_color: color for the cr_word (optional), default to 'rgba(205,205,205,0.0)'
+- toc: use the table of content plugin (not tested yet)
+- to_pdf: default to false, if true, will create a pdf version of the slides, using phantomjs. to use the to_pdf function, please check and install phantomjs following the <a href="https://github.com/astefanutti/decktape">decktape instruction</a> and <a href="http://phantomjs.org/" target="blank">phantomjs instruction</a>.
+- reveal_path: optional, default to 'reveal.js'(the same directory as the output html)</p>
+<h2 id="thespecialkeywordforgeneratingslidesandsomeotherfunctions">the special keyword for generating slides and some other functions</h2>
+
+<p>pyreveal use a list of escape keyword to generate the function for reveal.js:</p>
+<p>```markdown</p>
+<p>---keyword</p>
+<p>```</p>
+<p>where, the <em>keyword</em> include: right, down, data<em>, style</em>, fragment, notes</p>
+<h2 id="slidesbreak">slides break</h2>
+
+<p>there are two types of slides break:</p>
+<p>```markdown</p>
+<p>---right</p>
+<p>```</p>
+<p>the following slide will appear at right, i.e. a new slide (section).</p>
+<p>OR, </p>
+<p>```markdown</p>
+<p>---down</p>
+<p>```</p>
+<p>the following slide will appear at bottom, i.e. a subslide. </p>
+<h2 id="slidebackgroundandstyle">slide background and style</h2>
+
+<p>```markdown</p>
+<p>---data<em>
+---style</em></p>
+<p>```</p>
+<p>just same as the reveal.js, they use data-background or something similar to change the per-slide styles.
+Therefore, pyreveal will check if there is a ---data-something, then it will put the data-something into and something like the <section data-something> will be generate. </p>
+<p>The same goes for style. </p>
+<p>For more detail, check the corresponding demo.md file that generate something similar to the demo in the original reveal.js website. </p>
+<h2 id="fragment">fragment</h2>
+
+<p>for fragment, pyreveal also use something like this:</p>
+<p>```markdown</p>
+<p>---fragment
+this will appear after right or down is press
+---fragment_grow
+this will grow next</p>
+<p>```</p>
+<p>pyreveal will just put the tag after the '---' (with replacing the '_' with a blank space) into the <p class="{{ here }}">. So all kind of fragment styles will be supported as they should be in the reveal.js. </p>
+<p>Just some minor different, that shows in the demo file, the word "highlight" does not sit at there at first.</p>
+<h2 id="speakernotes">speaker notes</h2>
+
+<p>finally, the speaker notes. </p>
+<p>the speaker notes should be put at the last of each slide, after the tag.
+```markdown</p>
+<p>---notes
+this is the speaker notes
+line 2 
+line 3</p>
+<p>```</p>
+<h1 id="somethingnew">something new</h1>
+
+<h2 id="tousesimple-menu">to use simple-menu</h2>
+
+<p>simple-menu is the links on top of the slide, check this plugin page: <a href="https://github.com/Martinomagnifico/reveal.js-simplemenu">the plugin for a simple and nice top or bottom menu bar</a>.</p>
+<p>at the very top of the md file, add:</p>
+<p><code>markdown
+use_simplemenu: true
+menu_bottom: false</code></p>
+<p>or true if you want the menu at the bottom, change menu_bottom to: true</p>
+<p>if the use_simplemenu is set to false, it will force the slide to ignore the chapter name and not showing them. </p>
+<p>on each top slide, add</p>
+<p><code>markdown
+---chapter=some fancy title</code></p>
+<p>the "some fancy title" will be on the top of the slide now</p>
+<h2 id="tousemenu">to use menu</h2>
+
+<p>menu is the one that can be toggle by clicking the button at the bottom left, and it appear on the left hand side, as a slides tree. <a href="https://github.com/denehyg/reveal.js-menu">the plugin for slide-out menu for reveal.js</a>.</p>
+<p>to use this, simply add</p>
+<p><code>markdown
+use_menu: true</code></p>
+<p>at the top setting area. </p>
+<h2 id="tousekatex">to use katex</h2>
+
+<p>if there is any latex equation, remember to add</p>
+<p><code>markdown
+use_katex: true</code></p>
+<p>at the top setting area. <a href="https://github.com/JeremyHeleine/KaTeX-for-reveal.js">Katex for reveal.js plugin</a>. </p>
+<h2 id="tonotusethefootertitle">to NOT use the footer title </h2>
+
+<p>I just realize in the previous version, it is force to use the footer. So if not using it, remember to set:</p>
+<p><code>markdown
+cr_word: --</code></p>
+<p>it is two dashes. This will be recognize as not using them, thus not showing the title as previous version will do. </p>
+<h1 id="usage">Usage</h1>
+
+<h2 id="run">run</h2>
+
+<p>run this and done.</p>
+<p>```sh
+pyreveal -i whatever.md -w</p>
+<h1>or add python -m in front</h1>
+<p>```</p>
+<p>The two arguments:
+- -i: take a markdown file that contain the slides content (i.e. what you have prepared using the guidelines). 
+- -w: watch the change (optional), and rerun the function if any changes happened, this is very useful for making the slide. press ctrl+c to exit watch. </p>
+<p>If the md file is in a sub-directory, simple use:</p>
+<p>```sh
+pyreveal -i subdir/whatever.md -w</p>
+<h1>or add python -m in front</h1>
+<p>```</p>
+<p>This will also work. And this is handy if the reveal path is set at the upper level (e.g. "../reveal.js") for share usage. </p>
+<h2 id="custom.css">custom.css</h2>
+
+<p>Same as the output of the nbconvert, the output of the pyreveal will also try to read a custom.css at the same directory of the output html file. 
+So, it is possible and easy to change something for the slides, e.g. change the fonts. </p>
+<h1 id="nextplan">Next plan</h1>
+
+<p>Next thing to do should be try to read the jupyter notebook file, and convert the slides content from notebook to the reveal.js html. 
+Because I still hope that the <cell> tags should be remove, and the speaker notes should be fixed.  </p>
+<h2 id="additionthemes">addition themes</h2>
+
+<p>I have added some themes, using the google material design color palette. 
+They are:
+- material_colorset_dark
+- material_colorset_light</p>
+<p>The <em>colorset</em> include: amber, blue, bluegrey, brown, cyan, deeporange, deeppurple, green, grey, indigo, lightblue, lightgreen, lime, orange, pink, purple, red, teal, yellow. </p>
+<p>e.g.:
+- material_amber_dark
+- material_blue_dark
+- material_green_dark
+- material_indigo_dark
+- material_grey_light
+- material_red_light
+- material_purple_light</p>
+<p>Please try.</p>
+    </div>
+  </div>
+
+  
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body></html>

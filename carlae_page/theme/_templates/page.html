@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="UTF-8">
+  <title>{{ top_title }}</title>
+  <meta name="description" content="{{ description }}">
+  <meta name="author" content="{{ author }}">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="css/css.css" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/custom.css">
+  <!--<link rel="stylesheet" href="css/typicons/typicons.min.css">-->
+  <!--<link rel="stylesheet" href="css/fontawesome/css/fontawesome.min.css">
+  <link rel="stylesheet" href="css/fontawesome/css/brands.min.css">
+  <link rel="stylesheet" href="css/fontawesome/css/solid.min.css">-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typicons.font@2.0.9/src/font/typicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/fontawesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/brands.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/solid.min.css">
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script type="text/javascript" async="" src="js/ga.js"></script><script id="twitter-wjs" src="js/widgets.js"></script><script src="js/jquery.js"></script>
+  <script src="js/run_prettify.html"></script>
+  <link rel="stylesheet" href="css/github-prettify-theme.css">
+  <script src="js/site.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="http://getskeleton.com/dist/images/favicon.png">
+
+<script charset="utf-8" src="js/button.js"></script></head>
+<body class="code-snippets-visible">
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <section class="header">
+      <h1 class="title"> {{ project_name }} </h1>
+      {% if not( smart_title is none) %}<h2 class="title"> {{ smart_title }} </h2>{% endif %}
+      {% if not( project_url is none) %}
+      <a class="button button-primary" href="{{ project_url }}" > {{ project_url_title }} </a>
+      {% endif %}
+      {% if not (three_concepts is none) %}
+      <div class="value-props row">
+		{% for i in range(three_concepts|length) %}
+        <div class="{{ concept_width }} columns value-prop">
+		  <h1 style="color:{{ concept_color }};">{{ three_concepts[i] }}</h1>
+          {% if not (three_desc is none) %}{{ three_desc[i] }}{% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </section>
+
+	{% if menus|length>0 %}
+    <div class="navbar-spacer"></div>
+    <nav class="navbar">
+      <div class="container">
+        <ul class="navbar-list">
+          <!--<li class="navbar-item"><a class="navbar-link" href="#"><large>{{ project_name }}</large></a></li>-->
+		  {% for menu in menus %}
+          <li class="navbar-item">
+            <a class="navbar-link" href="#" data-popover="#codeNavPopover{{ menu[0][0] }}">{{ menu[0][1] }}</a>
+            <div id="codeNavPopover{{ menu[0][0] }}" class="popover">
+              <ul class="popover-list">
+                <li class="popover-item">
+                  <a class="popover-link" href="#{{ menu[0][0] }}">{{ menu[0][1] }}</a>
+                </li>
+                {% for ide, ite in menu[1] %}
+                <li class="popover-item">
+                  <a class="popover-link" href="#{{ ide }}">{{ ite }}</a>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </nav>
+    {% endif %}
+
+    <!-- main text area -->
+    <div class="docs-section" id="intro">
+	  {{ content }}
+    </div>
+  </div>
+
+  {% if google_analytics is not none %}
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', {{ google_analytics }}]);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+  {% endif %}
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body></html>
