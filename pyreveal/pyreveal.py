@@ -12,7 +12,7 @@ import jinja2
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 
-from docdata.mmddata import get_data
+from pyreveal.docdata.mmddata import get_data
 
 
 class MyHandler(FileSystemEventHandler):
@@ -21,7 +21,7 @@ class MyHandler(FileSystemEventHandler):
 
     def dispatch(self, event):
         slides(self.infile)
-        print "updated slides"
+        print("updated slides")
 
 def main():
     parser = OptionParser()
@@ -34,18 +34,18 @@ def main():
 
     (options, args) = parser.parse_args()
 
-    print 'processing:', options.filename
+    print('processing: '+options.filename)
     #try:
     S = slides(options.filename)
     htmlfile = S.outputPath
-    print 'done writing to html:', htmlfile
+    print('done writing to html: '+htmlfile)
     #pdffile = S.pdffile
     #if S.to_pdf:
     #    export_topdf(htmlfile, pdffile)
 
     if options.watch:
-        print "start watching changes"
-        print "to stop watching, press ctrl+c"
+        print("start watching changes")
+        print("to stop watching, press ctrl+c")
         observer = Observer()
         event_handler = MyHandler(options.filename)
         path =  os.path.dirname(os.path.abspath(options.filename))
@@ -57,8 +57,8 @@ def main():
         except KeyboardInterrupt:
             observer.stop()
         observer.join()
-        print ""
-        print "watching stop"
+        print("")
+        print("watching stop")
     #print "checking"
     #if S.to_pdf:
     #    export_topdf(htmlfile, pdffile)
@@ -66,14 +66,14 @@ def main():
 def check_mkdir(outpath):
     directory = os.path.dirname(outpath)
     if not os.path.exists(directory):
-        print 'creating dir:', directory
+        print('creating dir: '+directory)
         os.makedirs(directory)
 
 def text_export(outputText, outputPath):
     check_mkdir(outputPath)
     #print 'writing file to:', outputPath
     f = open(outputPath, 'w')
-    f.write(outputText.encode("utf-8"))
+    f.write(outputText)#.encode("utf-8"))
     f.close()
 
 def copy_directories(static_path_in, static_path_out):
@@ -124,7 +124,7 @@ class slides():
                 config['toc'] = False
 
         if 'use_katex' in config:
-            if config['use_katex']:#.lower().replace(' ','')=='true':
+            if config['use_katex'].lower().replace(' ','')=='true':
                 config['use_katex'] = True
             else:
                 config['use_katex'] = False
@@ -173,12 +173,12 @@ class slides():
             del config['to_pdf']
         self.to_pdf = to_pdf
         """
-        """
+
         if 'use_katex' in config and (config['use_katex'].lower()=='true'):
             config['use_katex'] = True
         else:
             config['use_katex'] = False
-        """
+
         if 'menu_bottom' in config and (config['menu_bottom'].lower()=='true'):
             config['menu_bottom'] = True
         else:
@@ -241,10 +241,10 @@ class slides():
         with open(afile, 'r') as f:
             doc = f.read()
         doc, config = get_data(doc)
-        doc = doc.decode('utf-8')
+        doc = doc#.decode('utf-8')
         #print doc
         config2 = {}
-        for k,v in config.iteritems():
+        for k,v in config.items():
             config2[k] = ' '.join(v)
         return doc, config2
 
