@@ -6,7 +6,10 @@ to_pdf: false
 
 ## page 1
 
-this is a demo for pyreveal
+this is a demo for pyreveal  
+is this here
+
+:fas-camera:
 
 ---down
 

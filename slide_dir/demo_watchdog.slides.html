@@ -6,20 +6,28 @@
 
 		<title>demo watchdog</title>
 
+		<!--<link rel="stylesheet" href="reveal.js/css/reset.css">-->
 		<link rel="stylesheet" href="reveal.js/css/reveal.css">
 		<link rel="stylesheet" href="reveal.js/css/theme/black.css">
+		<link rel="stylesheet" href="reveal.js/css/simplemenu.css">
+		<link rel="stylesheet" href="reveal.js/css/verticator.css">
+		<link rel="stylesheet" href="reveal.js/css/typicons/typicons.min.css">
+        <link rel="stylesheet" href="reveal.js/css/fontawesome/css/fontawesome.min.css">
+		<link rel="stylesheet" href="reveal.js/css/fontawesome/css/brands.min.css">
+		<link rel="stylesheet" href="reveal.js/css/fontawesome/css/solid.min.css">
+
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
+		<!-- Printing and PDF exports --><!--
 		<script>
 			var link = document.createElement( 'link' );
 			link.rel = 'stylesheet';
 			link.type = 'text/css';
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
+		</script>-->
         
 		<link rel="stylesheet" href="reveal.js/plugin/title-footer/title-footer.css">
         
@@ -28,11 +36,16 @@
 	</head>
 	<body>
 		<div class="reveal">
+			
+			<ul class="verticator">
+			</ul>
 			<div class="slides">
                 <section>
 <section>
 <h2>page 1</h2>
-<p>this is a demo for pyreveal</p>
+<p>this is a demo for pyreveal<br />
+is this here</p>
+<p><i class="fas fa-camera"></i></p>
 </section>
 <section>
 <h1>testing</h1>
@@ -62,9 +75,10 @@
 </section>
 
 			</div>
+			
 		</div>
 
-		<script src="reveal.js/lib/js/head.min.js"></script>
+		<!--<script src="reveal.js/lib/js/head.min.js"></script>-->
 		<script src="reveal.js/js/reveal.js"></script>
 
 		<script>
@@ -72,15 +86,20 @@
 			Reveal.initialize({
 				history: true,
                 transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/none
-
+                verticator: { color: '#acc2d9' }, 
+				slideNumber: true,
+				slideNumber: 'h.v', 
+				showSlideNumber: 'all',
+                pdfExportShortcut: 'E',
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
 					{ src: 'reveal.js/plugin/markdown/marked.js' },
 					{ src: 'reveal.js/plugin/markdown/markdown.js' },
 					{ src: 'reveal.js/plugin/notes/notes.js', async: true },
-					{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-                    { src: 'reveal.js/plugin/title-footer/title-footer.js',async: true,callback: function() {title_footer.initialize(title='build with love',background='rgba(205,205,205,0.0)');}}, 
-                    { src: 'reveal.js/plugin/math-katex/math-katex.js', async: true }
+					{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }, 
+                    { src: 'reveal.js/plugin/pdfexport/pdfexport.js', async: true },
+					{ src: 'reveal.js/plugin/verticator/verticator.js' }, 
+                    { src: 'reveal.js/plugin/title-footer/title-footer.js', async: true,callback: function() {title_footer.initialize(title='build with love',background='rgba(205,205,205,0.0)');}},   
 				]
 			});
 		</script>
