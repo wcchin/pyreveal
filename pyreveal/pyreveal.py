@@ -124,7 +124,7 @@ class slides():
                 config['toc'] = False
 
         if 'use_katex' in config:
-            if config['use_katex'].lower().replace(' ','')=='true':
+            if config['use_katex']:#.lower().replace(' ','')=='true':
                 config['use_katex'] = True
             else:
                 config['use_katex'] = False
@@ -173,12 +173,12 @@ class slides():
             del config['to_pdf']
         self.to_pdf = to_pdf
         """
-
+        """
         if 'use_katex' in config and (config['use_katex'].lower()=='true'):
             config['use_katex'] = True
         else:
             config['use_katex'] = False
-
+        """
         if 'menu_bottom' in config and (config['menu_bottom'].lower()=='true'):
             config['menu_bottom'] = True
         else:
