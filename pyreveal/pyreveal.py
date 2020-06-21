@@ -122,13 +122,13 @@ class slides():
                 config['toc'] = True
             else:
                 config['toc'] = False
-
+        """
         if 'use_katex' in config:
             if config['use_katex'].lower().replace(' ','')=='true':
                 config['use_katex'] = True
             else:
                 config['use_katex'] = False
-
+        """
         if 'reveal_path' in config:
             reveal_path = config['reveal_path']
             #del config['reveal_path']
@@ -232,6 +232,7 @@ class slides():
 
         if config['use_katex']:
             katex_path = os.path.join(base_dir, output_dir, 'plugin', 'katex')
+            # this is because katex.js will try to find katex.min.css and katex.js in the plugin/katex, they not use relative path
             if not os.path.exists(katex_path):
                 katex_src = os.path.join(pyrev_path,'reveal_js', 'plugin', 'katex')
                 copy_directories(katex_src, katex_path)

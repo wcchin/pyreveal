@@ -90,7 +90,29 @@
 				slideNumber: true,
 				slideNumber: 'h.v', 
 				showSlideNumber: 'all',
-                pdfExportShortcut: 'E',
+                pdfExportShortcut: 'E',{% if use_menu %} 
+                menu: {
+                    // Use 'left' or 'right'.
+                    side: 'left',
+                    width: 'normal',
+                    numbers: false,
+                    titleSelector: 'h1, h2, h3, h4, h5, h6',
+                    useTextContentForMissingTitles: true,
+                    hideMissingTitles: false,
+                    markers: true,
+                    custom: false,
+                    themes: true,
+                    themesPath: 'css/theme/',
+                    transitions: true,
+                    openButton: true,
+                    openSlideNumber: false,
+                    keyboard: true,
+                    sticky: false,
+                    autoOpen: true,
+                    delayInit: false,
+                    openOnInit: false,
+                    loadIcons: true
+                },{% endif %}
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
 					{ src: '{{ reveal_path }}/plugin/markdown/marked.js' },
@@ -102,8 +124,18 @@
                     { src: '{{ reveal_path }}/plugin/title-footer/title-footer.js', async: true,callback: function() {title_footer.initialize(title='{{ cr_word }}',background='{{ cr_color }}');}}, {% endif %} {% if use_katex %}
                     { src: '{{ reveal_path }}/plugin/katex/katex.js', async: true},  {% endif %} {% if use_simplemenu %} 
                     { src: '{{ reveal_path }}/plugin/simplemenu/simplemenu.js' }, {% endif %}{% if use_menu %} 
-                    { src: '{{ reveal_path }}/plugin/menu/menu.js' }, {% endif %}
-				]
+                    { src: '{{ reveal_path }}/plugin/menu/menu.js' }, {% endif %}{% if use_chalkboard %} 
+                    { src: '{{ reveal_path }}/plugin/chalkboard/chalkboard.js' }, {% endif %}
+				]{% if use_chalkboard %}, 
+                keyboard: {
+                    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
+                    66: function() { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
+                    46: function() { RevealChalkboard.clear() },	// clear chalkboard when 'DEL' is pressed
+                     8: function() { RevealChalkboard.reset() },	// reset chalkboard data on current slide when 'BACKSPACE' is pressed
+                    68: function() { RevealChalkboard.download() },	// downlad recorded chalkboard drawing when 'd' is pressed
+                    88: function() { RevealChalkboard.colorNext() },	// cycle colors forward when 'x' is pressed
+                    89: function() { RevealChalkboard.colorPrev() },	// cycle colors backward when 'y' is pressed
+                }{% endif %}
 			});
 		</script>
 	</body>
