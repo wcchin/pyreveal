@@ -4,11 +4,11 @@ project_name: pyreveal
 smart_title: a markdown to revealjs engine 
 author: wcchin
 short_description: a python package for converting markdown to reveal.js slides
-keywords: [reveealjs, markdown, python]
+keywords: [revealjs, markdown, python]
 three_concepts: [':typcn-lightbulb:', ':fab-markdown:', ':fas-chart-area:']
 three_desc: [get some idea, write with markdown, and present it]
 concept_color: '#33C3F0'
-project_url: https://github.com/wcchin/carlae
+project_url: https://github.com/wcchin/pyreveal
 project_url_title: go to project page
 theme: skeleton
 carlae_dir: carlae_page
@@ -292,20 +292,7 @@ Because I still hope that the <cell> tags should be remove, and the speaker note
 
 
 ## addition themes
-I have added some themes, using the google material design color palette. 
-They are:
-- material_colorset_dark
-- material_colorset_light
+Recently, the material themes were dropped. Added a theme modified from league.css, file name: bstyle.css
 
-The *colorset* include: amber, blue, bluegrey, brown, cyan, deeporange, deeppurple, green, grey, indigo, lightblue, lightgreen, lime, orange, pink, purple, red, teal, yellow. 
-
-e.g.:
-- material_amber_dark
-- material_blue_dark
-- material_green_dark
-- material_indigo_dark
-- material_grey_light
-- material_red_light
-- material_purple_light
 
 Please try.
