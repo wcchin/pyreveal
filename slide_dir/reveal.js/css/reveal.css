@@ -5,6 +5,7 @@
  *
  * Copyright (C) 2019 Hakim El Hattab, http://hakim.se
  */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital@0;1&display=swap');
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
@@ -448,7 +449,7 @@ body {
   right: 8px;
   bottom: 8px;
   z-index: 31;
-  font-family: Helvetica, sans-serif;
+  font-family: Nunito, sans-serif;
   font-size: 12px;
   line-height: 1;
   color: #fff;

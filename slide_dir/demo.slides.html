@@ -6,25 +6,39 @@
 
 		<title>reveal.js The HTML Presentation Framework</title>
 
-		<link rel="stylesheet" href="https://wcc-slides.netlify.com/reveal.js/css/reveal.css">
-		<link rel="stylesheet" href="https://wcc-slides.netlify.com/reveal.js/css/theme/material_blue_dark.css">
+		<!--<link rel="stylesheet" href="reveal.js/css/reset.css">-->
+		<link rel="stylesheet" href="reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="reveal.js/css/theme/bstyle.css">
+		<link rel="stylesheet" href="reveal.js/css/simplemenu.css">
+		<link rel="stylesheet" href="reveal.js/css/verticator.css">
+		<link rel="stylesheet" href="reveal.js/css/typicons/typicons.min.css">
+        <link rel="stylesheet" href="reveal.js/css/fontawesome/css/fontawesome.min.css">
+		<link rel="stylesheet" href="reveal.js/css/fontawesome/css/brands.min.css">
+		<link rel="stylesheet" href="reveal.js/css/fontawesome/css/solid.min.css">
+
 
 		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="https://wcc-slides.netlify.com/reveal.js/lib/css/zenburn.css">
+		<link rel="stylesheet" href="reveal.js/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
+		<!-- Printing and PDF exports --><!--
 		<script>
 			var link = document.createElement( 'link' );
 			link.rel = 'stylesheet';
 			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'https://wcc-slides.netlify.com/reveal.js/css/print/pdf.css' : 'https://wcc-slides.netlify.com/reveal.js/css/print/paper.css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
+		</script>-->
+        
+		<link rel="stylesheet" href="reveal.js/plugin/title-footer/title-footer.css">
+        
         <!-- Custom stylesheet, it must be in the same directory as the html file -->
         <link rel="stylesheet" href="custom.css">
 	</head>
 	<body>
 		<div class="reveal">
+			
+			<ul class="verticator">
+			</ul>
 			<div class="slides">
                 <section>
 <h1>pyreveal</h1>
@@ -111,7 +125,7 @@ check <a href="https://github.com/wcchin/pyreveal">github/pyreveal</a></p>
 </section>
 <section>
 <h2>Fragment Styles</h2>
-<p>There's different types of fragments, like:
+<p>There's different types of fragments, like:</p>
 <div class="fragment grow">
 grow
 </div>
@@ -127,7 +141,7 @@ fade-up (also down, left and right!)
 <div class="fragment current-visible">
 current-visible
 </div>
-Highlight
+<p>Highlight
 <span class="fragment highlight-red">
 red
 </span>
@@ -151,9 +165,9 @@ green</p>
 </section>
  <section>
 <h2>Themes</h2>
-<p>reveal.js comes with a few themes built in: <br>
+<p>reveal.js comes with a few themes built in: <br></p>
 <!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
-<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/black.css'); return false;">Black (default)</a> -
+<p><a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/black.css'); return false;">Black (default)</a> -
 <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/white.css'); return false;">White</a> -
 <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/league.css'); return false;">League</a> -
 <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/sky.css'); return false;">Sky</a> -
@@ -175,11 +189,11 @@ green</p>
 </section>
 <section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
 <h2>Image Backgrounds</h2>
-<p><pre><code class="hljs">&lt;section data-background="image.png"&gt;</code></pre></p>
+<pre><code class="hljs">&lt;section data-background="image.png"&gt;</code></pre>
 </section>
 <section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" data-background-repeat="repeat" data-background-size="100px">
 <h2>Tiled Backgrounds</h2>
-<p><pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre></p>
+<pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
 </section>
 <section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
 <div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
@@ -203,22 +217,23 @@ green</p>
 </section>
  <section>
 <h2>Pretty Code</h2>
-<p><pre><code class="hljs" data-trim contenteditable>
+<pre><code class="hljs" data-trim contenteditable>
 function linkify( selector ) {
-  if( supports3DTransforms ) {</p>
-<pre><code>var nodes = document.querySelectorAll( selector );
+  if( supports3DTransforms ) {
 
-for( var i = 0, len = nodes.length; i &amp;lt; len; i++ ) {
-  var node = nodes[i];
+    var nodes = document.querySelectorAll( selector );
 
-  if( !node.className ) {
-    node.className += ' roll';
+    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
+      var node = nodes[i];
+
+      if( !node.className ) {
+        node.className += ' roll';
+      }
+    }
   }
 }
 </code></pre>
-<p>}
-}
-</code></pre></p>
+
 <p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
 </section>
  <section>
@@ -269,11 +284,12 @@ for( var i = 0, len = nodes.length; i &amp;lt; len; i++ ) {
 <h2>Clever Quotes</h2>
 <p>These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations"> 
 &ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-</p>
+</p></p>
 <blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
     &ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
     reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-</blockquote></p>
+</blockquote>
+
 <blockquote>
 <p>a markdown based block
 quote test</p>
@@ -296,8 +312,8 @@ quote test</p>
 </section>
  <section>
 <h2>Export to PDF</h2>
-<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
-<iframe data-src="https://www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe></p>
+<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p></p>
+<iframe data-src="https://www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
 </section>
  <section>
 <h2>Global State</h2>
@@ -337,25 +353,31 @@ Reveal.addEventListener( 'customevent', function() {
 </section>
 
 			</div>
+			
 		</div>
 
-		<script src="https://wcc-slides.netlify.com/reveal.js/lib/js/head.min.js"></script>
-		<script src="https://wcc-slides.netlify.com/reveal.js/js/reveal.js"></script>
+		<!--<script src="reveal.js/lib/js/head.min.js"></script>-->
+		<script src="reveal.js/js/reveal.js"></script>
 
 		<script>
 			// More info https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
 				history: true,
                 transition: Reveal.getQueryHash().transition || 'concave', // default/cube/page/concave/zoom/linear/none
-
+                verticator: { color: '#acc2d9' }, 
+				slideNumber: true,
+				slideNumber: 'h.v', 
+				showSlideNumber: 'all',
+                pdfExportShortcut: 'E',
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
-					{ src: 'https://wcc-slides.netlify.com/reveal.js/plugin/markdown/marked.js' },
-					{ src: 'https://wcc-slides.netlify.com/reveal.js/plugin/markdown/markdown.js' },
-					{ src: 'https://wcc-slides.netlify.com/reveal.js/plugin/notes/notes.js', async: true },
-					{ src: 'https://wcc-slides.netlify.com/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-                    { src: 'https://wcc-slides.netlify.com/reveal.js/plugin/title-footer/title-footer.js',async: true,callback: function() {title_footer.initialize(title='pyreveal - Benny',background='rgba(205,205,205,0.0)');}}, 
-                    { src: 'https://wcc-slides.netlify.com/reveal.js/plugin/math-katex/math-katex.js', async: true }
+					{ src: 'reveal.js/plugin/markdown/marked.js' },
+					{ src: 'reveal.js/plugin/markdown/markdown.js' },
+					{ src: 'reveal.js/plugin/notes/notes.js', async: true },
+					{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }, 
+                    { src: 'reveal.js/plugin/pdfexport/pdfexport.js', async: true },
+					{ src: 'reveal.js/plugin/verticator/verticator.js' }, 
+                    { src: 'reveal.js/plugin/title-footer/title-footer.js', async: true,callback: function() {title_footer.initialize(title='pyreveal - Benny',background='rgba(205,205,205,0.0)');}},   
 				]
 			});
 		</script>

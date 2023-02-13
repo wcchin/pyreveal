@@ -1,11 +1,11 @@
 title: reveal.js The HTML Presentation Framework
-theme: material_blue_dark
+theme: bstyle
 transition: concave
 cr_word: pyreveal - Benny
 cr_color: rgba(205,205,205,0.0)
 toc: False
 to_pdf: false
-reveal_path: https://wcc-slides.netlify.com/reveal.js
+
 
 # pyreveal
 #### converting markdown and using python-jinja2 into 
