@@ -239,7 +239,7 @@ class slides():
 
 
     def process_md(self, afile):
-        with open(afile, 'r') as f:
+        with open(afile, 'r', encoding='utf-8') as f:
             doc = f.read()
         doc, config = get_data(doc)
         doc = doc#.decode('utf-8')
