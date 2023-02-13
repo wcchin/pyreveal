@@ -17,6 +17,8 @@ carlae_dir: carlae_page
 # pyreveal
 **a python package for converting markdown to reveal.js slides**
 
+*Also, check the remark.js alternative as well: [pyremark_slides](https://github.com/wcchin/pyremark_slides). I am using this for my recent internal meeting presentations.*
+
 ## a demo
 [![pyreveal demo video](http://wcchin.github.io/images/pyrev_demo_vimeo.png)](https://vimeo.com/226295024)
 
