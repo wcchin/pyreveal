@@ -1,9 +1,10 @@
 from setuptools import setup, find_packages
 
+
 setup(
     name="pyreveal",
 
-    version="0.1.3",
+    version="0.1.4",
     
     author="Benny Chin",
     author_email="wcchin.88@gmail.com",
@@ -12,8 +13,9 @@ setup(
     #package_dir={'':'pyreveal'},
 
     include_package_data=True,
-    package_data={'': ['templates/*.html']},
-
+    
+    package_data={'': ['templates/base.html']},
+    
     url="https://github.com/wcchin/pyreveal",
 
     license="LICENSE",
